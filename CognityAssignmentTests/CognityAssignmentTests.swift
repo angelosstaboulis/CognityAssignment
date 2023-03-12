@@ -24,6 +24,21 @@ final class CognityAssignmentTests: XCTestCase {
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        
+        //Unit Test
+        
+//        let expectation = XCTestExpectation(description: "fetchShows")
+//
+//        defer { wait(for: [expectation], timeout: TimeInterval(15)) }
+//
+//        APIManager.shared.fetchShows { array in
+//                defer {expectation.fulfill() }
+//                XCTAssertNotNil(array)
+//        }
+//
+          
+        
+        
     }
 
     func testPerformanceExample() throws {
