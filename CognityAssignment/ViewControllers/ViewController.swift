@@ -9,16 +9,17 @@ import UIKit
 import SDWebImage
 import Toast
 import Network
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,TVSHowProtocol {
+import Combine
+import SwiftUI
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var result:[TVModel] = []{
         willSet{
             DispatchQueue.main.async {
-                self.tableTVShow.reloadData()
+                    self.tableTVShow.reloadData()
             }
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
         return result.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -32,7 +33,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     @IBOutlet weak var tableTVShow: UITableView!
     var viewModel = TVShowViewModel()
-    var dbManager = DBManager()
+
+    var helper = Helper()
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -42,35 +44,41 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    override func viewWillAppear(_ animated: Bool) {
         initTableView()
     }
+  
 
 }
 extension ViewController {
     func offLineUse(){
         self.view.makeToast("Please wait.........", duration: 1.5, position: .center, style: ToastStyle())
-        let monitor = NWPathMonitor()
-        monitor.start(queue: .main)
-        monitor.pathUpdateHandler = { path in
-
-
-            if path.status == .satisfied{
-                self.viewModel.fetchTVShow()
-                self.result.append(contentsOf: self.viewModel.delegate!.result)
-            }
-            else{
-                for item in 0..<self.dbManager.fetchRecord().count{
-                    self.result.append(TVModel(name: self.dbManager.fetchRecord()[item].name!, rating: self.dbManager.fetchRecord()[item].ratings!, thumbnail: self.dbManager.fetchRecord()[item].thumb!))
-            
+        DispatchQueue.main.async { [self] in
+            if self.helper.isOnline {
+                Task.init{
+                    self.result = await self.viewModel.fetchTVShows()
+                        for item in 0..<self.result.count{
+                            self.viewModel.insertRecord(dbStruct:DBStruct(id: item, name: self.result[item].name!, ratings: self.result[item].rating!, thumb: self.result[item].thumbnail!))
+                            
+                        }
                 }
-           }
+            }else{
+                let shows = Array(viewModel.fetchRecords())
+                debugPrint("shows=",shows.count,shows)
+                for item in 0..<shows.count {
+                    self.result.append(TVModel(name: shows[item].name, rating: shows[item].ratings, thumbnail: shows[item].thumb))
+                }
+                
+            }
+            
         }
+        
     }
     func initTableView(){
         tableTVShow.delegate = self
         tableTVShow.dataSource = self
         self.navigationController?.navigationBar.topItem?.title = "TV Shows"
-        viewModel.delegate = self
         offLineUse()
     }
 }
@@ -86,12 +94,12 @@ extension ViewController{
     func setupCell(indexPath:IndexPath,tableView:UITableView)->TVCell{
         let cell:TVCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TVCell
         if result.count > 0 {
-            self.dbManager.insertRecord(dbStruct: DBStruct(name: self.result[indexPath.row].name!, ratings: self.result[indexPath.row].rating!, thumb: self.result[indexPath.row].thumbnail!))
+           
             cell.imgThumb.sd_setImage(with: URL(string: result[indexPath.row].thumbnail!))
             cell.lblName.text = result[indexPath.row].name
             cell.lblRatings.text = result[indexPath.row].rating
         }
-       
+ 
         return cell
     }
 }

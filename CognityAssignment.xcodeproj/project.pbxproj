@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D606728F29BD3A06004DB7E9 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D606728E29BD3A06004DB7E9 /* Realm */; };
 		D606729129BD3A06004DB7E9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D606729029BD3A06004DB7E9 /* RealmSwift */; };
-		D606729429BD3A51004DB7E9 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606729329BD3A51004DB7E9 /* DBManager.swift */; };
 		D606729629BD3AD5004DB7E9 /* DBStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606729529BD3AD5004DB7E9 /* DBStruct.swift */; };
 		D606729829BD4CC1004DB7E9 /* StartAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606729729BD4CC1004DB7E9 /* StartAssignmentViewController.swift */; };
 		D606729A29BD52D3004DB7E9 /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606729929BD52D3004DB7E9 /* MainNavigationViewController.swift */; };
@@ -25,6 +24,7 @@
 		D6435B9129BA831B00D34572 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D6435B9029BA831B00D34572 /* SDWebImage */; };
 		D6435B9429BA8B1600D34572 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6435B9329BA8B1600D34572 /* DetailsViewController.swift */; };
 		D6435B9629BA8BB400D34572 /* TVDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6435B9529BA8BB400D34572 /* TVDetailsCell.swift */; };
+		D69E76DB29C1CFEB002AEEE4 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69E76DA29C1CFEB002AEEE4 /* Helper.swift */; };
 		D6AD36D029B9C18100498D0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AD36CF29B9C18100498D0C /* AppDelegate.swift */; };
 		D6AD36D229B9C18100498D0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AD36D129B9C18100498D0C /* SceneDelegate.swift */; };
 		D6AD36D429B9C18100498D0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AD36D329B9C18100498D0C /* ViewController.swift */; };
@@ -54,7 +54,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D606729329BD3A51004DB7E9 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		D606729529BD3AD5004DB7E9 /* DBStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStruct.swift; sourceTree = "<group>"; };
 		D606729729BD4CC1004DB7E9 /* StartAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAssignmentViewController.swift; sourceTree = "<group>"; };
 		D606729929BD52D3004DB7E9 /* MainNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		D62C2D5D29BA220100EB96BD /* TVShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowViewModel.swift; sourceTree = "<group>"; };
 		D6435B9329BA8B1600D34572 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		D6435B9529BA8BB400D34572 /* TVDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDetailsCell.swift; sourceTree = "<group>"; };
+		D69E76DA29C1CFEB002AEEE4 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D6AD36CC29B9C18100498D0C /* CognityAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CognityAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AD36CF29B9C18100498D0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6AD36D129B9C18100498D0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,7 +115,6 @@
 		D606729229BD3A39004DB7E9 /* DBManager */ = {
 			isa = PBXGroup;
 			children = (
-				D606729329BD3A51004DB7E9 /* DBManager.swift */,
 				D606729529BD3AD5004DB7E9 /* DBStruct.swift */,
 			);
 			path = DBManager;
@@ -133,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				D62C2D5129BA184E00EB96BD /* Constants.swift */,
+				D69E76DA29C1CFEB002AEEE4 /* Helper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -328,11 +328,11 @@
 			);
 			mainGroup = D6AD36C329B9C18000498D0C;
 			packageReferences = (
-				D62C2D4829BA127300EB96BD /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				D62C2D4B29BA129F00EB96BD /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */,
-				D6435B8F29BA831B00D34572 /* XCRemoteSwiftPackageReference "SDWebImage.git" */,
-				D606728D29BD3A06004DB7E9 /* XCRemoteSwiftPackageReference "realm-swift.git" */,
-				D606729B29BD5579004DB7E9 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */,
+				D62C2D4829BA127300EB96BD /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D62C2D4B29BA129F00EB96BD /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				D6435B8F29BA831B00D34572 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				D606728D29BD3A06004DB7E9 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				D606729B29BD5579004DB7E9 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = D6AD36CD29B9C18100498D0C /* Products */;
 			projectDirPath = "";
@@ -380,6 +380,7 @@
 			files = (
 				D606729829BD4CC1004DB7E9 /* StartAssignmentViewController.swift in Sources */,
 				D6435B9629BA8BB400D34572 /* TVDetailsCell.swift in Sources */,
+				D69E76DB29C1CFEB002AEEE4 /* Helper.swift in Sources */,
 				D62C2D5A29BA1C8100EB96BD /* TVCell.swift in Sources */,
 				D62C2D5229BA184E00EB96BD /* Constants.swift in Sources */,
 				D6435B9429BA8B1600D34572 /* DetailsViewController.swift in Sources */,
@@ -391,7 +392,6 @@
 				D606729629BD3AD5004DB7E9 /* DBStruct.swift in Sources */,
 				D6AD36D229B9C18100498D0C /* SceneDelegate.swift in Sources */,
 				D62C2D5E29BA220100EB96BD /* TVShowViewModel.swift in Sources */,
-				D606729429BD3A51004DB7E9 /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,7 +729,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D606728D29BD3A06004DB7E9 /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
+		D606728D29BD3A06004DB7E9 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -737,7 +737,7 @@
 				kind = branch;
 			};
 		};
-		D606729B29BD5579004DB7E9 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */ = {
+		D606729B29BD5579004DB7E9 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
 			requirement = {
@@ -745,7 +745,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		D62C2D4829BA127300EB96BD /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		D62C2D4829BA127300EB96BD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -753,7 +753,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		D62C2D4B29BA129F00EB96BD /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */ = {
+		D62C2D4B29BA129F00EB96BD /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -761,7 +761,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		D6435B8F29BA831B00D34572 /* XCRemoteSwiftPackageReference "SDWebImage.git" */ = {
+		D6435B8F29BA831B00D34572 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -774,32 +774,32 @@
 /* Begin XCSwiftPackageProductDependency section */
 		D606728E29BD3A06004DB7E9 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D606728D29BD3A06004DB7E9 /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = D606728D29BD3A06004DB7E9 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
 		D606729029BD3A06004DB7E9 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D606728D29BD3A06004DB7E9 /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = D606728D29BD3A06004DB7E9 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 		D606729C29BD5579004DB7E9 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D606729B29BD5579004DB7E9 /* XCRemoteSwiftPackageReference "Toast-Swift.git" */;
+			package = D606729B29BD5579004DB7E9 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
 		};
 		D62C2D4929BA127300EB96BD /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D62C2D4829BA127300EB96BD /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = D62C2D4829BA127300EB96BD /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		D62C2D4C29BA129F00EB96BD /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D62C2D4B29BA129F00EB96BD /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */;
+			package = D62C2D4B29BA129F00EB96BD /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
 		D6435B9029BA831B00D34572 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D6435B8F29BA831B00D34572 /* XCRemoteSwiftPackageReference "SDWebImage.git" */;
+			package = D6435B8F29BA831B00D34572 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */

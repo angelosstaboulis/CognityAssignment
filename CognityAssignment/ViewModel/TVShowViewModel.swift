@@ -6,21 +6,59 @@
 //
 
 import Foundation
-protocol TVSHowProtocol:AnyObject{
-    var result:[TVModel]{
-        get
-        set
-    }
-}
+import Realm
+import RealmSwift
 class TVShowViewModel{
-    var apishared:APIManager!
-    weak var delegate:TVSHowProtocol?
+    var apishared = APIManager.shared
+    var realm:Realm!
     init(){
         apishared = APIManager.shared
-    }
-    func fetchTVShow(){
-        apishared.fetchShows { array in
-            self.delegate?.result = array
+        var config = Realm.Configuration()
+
+           config.fileURL = config
+
+               .fileURL!
+
+               .deletingLastPathComponent()
+
+               .appendingPathComponent("cognity.realm")
+       
+     
+
+           config.schemaVersion = 59
+
+           config.migrationBlock = { _, oldSchemaVersion in
+
+               if oldSchemaVersion < 1 {}
+           }
+        do{
+            realm = try Realm(configuration: config)
+        }
+        catch{
+            
         }
     }
+    func fetchTVShows() async -> [TVModel]{
+        return await apishared.fetchShows()
+    }
+    func insertRecord(dbStruct:DBStruct) {
+           do {
+              
+               try! realm?.write{
+                   realm?.create(DBStruct.self,value:dbStruct,update: .all)
+               }
+
+           } catch let error as NSError {
+               print(error)
+
+           }
+         
+
+    }
+    func fetchRecords()->Results<DBStruct>{
+       
+        return (realm?.objects(DBStruct.self))!
+    }
+    
+    
 }
