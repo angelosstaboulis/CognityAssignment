@@ -65,7 +65,6 @@ extension ViewController {
                 }
             }else{
                 let shows = Array(viewModel.fetchRecords())
-                debugPrint("shows=",shows.count,shows)
                 for item in 0..<shows.count {
                     self.result.append(TVModel(name: shows[item].name, rating: shows[item].ratings, thumbnail: shows[item].thumb))
                 }

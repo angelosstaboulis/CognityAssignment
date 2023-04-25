@@ -42,17 +42,9 @@ class TVShowViewModel{
         return await apishared.fetchShows()
     }
     func insertRecord(dbStruct:DBStruct) {
-           do {
-              
                try! realm?.write{
                    realm?.create(DBStruct.self,value:dbStruct,update: .all)
                }
-
-           } catch let error as NSError {
-               print(error)
-
-           }
-         
 
     }
     func fetchRecords()->Results<DBStruct>{
