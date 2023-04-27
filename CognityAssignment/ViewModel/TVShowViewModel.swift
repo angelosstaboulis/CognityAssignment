@@ -9,7 +9,7 @@ import Foundation
 import Realm
 import RealmSwift
 class TVShowViewModel{
-    var apishared = APIManager.shared
+    var apishared:APIManager!
     var realm:Realm!
     init(){
         apishared = APIManager.shared
