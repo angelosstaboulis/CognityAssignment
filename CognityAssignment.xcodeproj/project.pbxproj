@@ -34,6 +34,7 @@
 		D6AD36E729B9C18200498D0C /* CognityAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AD36E629B9C18200498D0C /* CognityAssignmentTests.swift */; };
 		D6AD36F129B9C18200498D0C /* CognityAssignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AD36F029B9C18200498D0C /* CognityAssignmentUITests.swift */; };
 		D6AD36F329B9C18200498D0C /* CognityAssignmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AD36F229B9C18200498D0C /* CognityAssignmentUITestsLaunchTests.swift */; };
+		D6F8B7802B78A28700898715 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F8B77F2B78A28700898715 /* DBManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		D6AD36EC29B9C18200498D0C /* CognityAssignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CognityAssignmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AD36F029B9C18200498D0C /* CognityAssignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognityAssignmentUITests.swift; sourceTree = "<group>"; };
 		D6AD36F229B9C18200498D0C /* CognityAssignmentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognityAssignmentUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D6F8B77F2B78A28700898715 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 			children = (
 				D62C2D5129BA184E00EB96BD /* Constants.swift */,
 				D69E76DA29C1CFEB002AEEE4 /* Helper.swift */,
+				D6F8B77F2B78A28700898715 /* DBManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				D62C2D5029BA12CB00EB96BD /* APIManager.swift in Sources */,
 				D606729A29BD52D3004DB7E9 /* MainNavigationViewController.swift in Sources */,
 				D6AD36D429B9C18100498D0C /* ViewController.swift in Sources */,
+				D6F8B7802B78A28700898715 /* DBManager.swift in Sources */,
 				D6AD36D029B9C18100498D0C /* AppDelegate.swift in Sources */,
 				D606729629BD3AD5004DB7E9 /* DBStruct.swift in Sources */,
 				D6AD36D229B9C18100498D0C /* SceneDelegate.swift in Sources */,

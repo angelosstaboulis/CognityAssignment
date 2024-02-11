@@ -9,8 +9,6 @@ import UIKit
 import SDWebImage
 import Toast
 import Network
-import Combine
-import SwiftUI
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var result:[TVModel] = []{
         willSet{
@@ -33,17 +31,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     @IBOutlet weak var tableTVShow: UITableView!
     var viewModel = TVShowViewModel()
-
+    var dbManager = DBManager()
     var helper = Helper()
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-
-        // Do any additional setup after loading the view.
-       
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     override func viewWillAppear(_ animated: Bool) {
         initTableView()
@@ -52,25 +43,31 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
 }
 extension ViewController {
+    func onlineFillArray(){
+        Task.init{
+                self.result = await self.viewModel.fetchTVShows()
+                for item in 0..<self.result.count{
+                    self.dbManager.insertRecord(dbStruct:DBStruct(id: item, name: self.result[item].name!, ratings: self.result[item].rating!, thumb: self.result[item].thumbnail!))
+                    
+                }
+        }
+       
+    }
+    func offlineFillArray(){
+        let shows = dbManager.fetchRecords()
+        for item in 0..<shows.count{
+                    self.result.append(TVModel(name: shows[item].name, rating: shows[item].ratings, thumbnail: shows[item].thumb))
+        }
+    }
     func offLineUse(){
         self.view.makeToast("Please wait.........", duration: 1.5, position: .center, style: ToastStyle())
         DispatchQueue.main.async { [self] in
             if self.helper.isOnline {
-                Task.init{
-                    self.result = await self.viewModel.fetchTVShows()
-                        for item in 0..<self.result.count{
-                            self.viewModel.insertRecord(dbStruct:DBStruct(id: item, name: self.result[item].name!, ratings: self.result[item].rating!, thumb: self.result[item].thumbnail!))
-                            
-                        }
-                }
+                    onlineFillArray()
             }else{
-                let shows = Array(viewModel.fetchRecords())
-                for item in 0..<shows.count {
-                    self.result.append(TVModel(name: shows[item].name, rating: shows[item].ratings, thumbnail: shows[item].thumb))
-                }
+                    offlineFillArray()
                 
             }
-            
         }
         
     }
@@ -93,7 +90,6 @@ extension ViewController{
     func setupCell(indexPath:IndexPath,tableView:UITableView)->TVCell{
         let cell:TVCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TVCell
         if result.count > 0 {
-           
             cell.imgThumb.sd_setImage(with: URL(string: result[indexPath.row].thumbnail!))
             cell.lblName.text = result[indexPath.row].name
             cell.lblRatings.text = result[indexPath.row].rating
